@@ -1,0 +1,27 @@
+.root {
+  margin-top: 5px;
+  background: #df0505;
+  font-size: 26px;
+  color: rgb(252, 240, 240);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lorem {
+  white-space: nowrap;
+  //animation: lorem 15s linear;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@keyframes lorem {
+  0% {
+    transform: translate(160%, 0);
+  }
+
+  100% {
+    transform: translate(-50%, 0);
+  }
+}

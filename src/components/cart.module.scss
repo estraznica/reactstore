@@ -1,0 +1,39 @@
+.root {
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+}
+.product {
+  width: 220px;
+  height: 450px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 0px;
+  font-size: 18px;
+}
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 220px;
+  height: 450px;
+}
+.price {
+  align-self: center;
+}
+.title {
+  cursor: pointer;
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+}
+img {
+  max-height: 400px;
+  cursor: pointer;
+}

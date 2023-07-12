@@ -1,0 +1,82 @@
+.root {
+  width: 900px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 600px;
+  }
+  @media (min-width: 640px) and (max-width: 768px) {
+    width: 500px;
+  }
+  @media (max-width: 640px) {
+    width: 300px;
+  }
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.loader {
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 200px;
+    height: 400px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  @media (min-width: 640px) and (max-width: 768px) {
+    width: 200px;
+    height: 400px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  @media (max-width: 640px) {
+    width: 200px;
+  }
+}
+.product {
+  width: 220px;
+  height: 450px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 0px;
+  font-size: 18px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 200px;
+    height: 400px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  @media (min-width: 640px) and (max-width: 768px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  @media (max-width: 640px) {
+    width: 200px;
+  }
+}
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.price {
+  align-self: center;
+}
+.title {
+  cursor: pointer;
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+}
+.img {
+  max-height: 270px;
+  cursor: pointer;
+}
+.notfound {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,29 @@
+.root {
+  position: relative;
+  span {
+    border-bottom: 2px dashed rgb(0, 0, 0);
+  }
+}
+.popup {
+  cursor: pointer;
+  position: absolute;
+  background: rgb(233, 233, 233);
+  right: 0px;
+  top: 29px;
+  text-align: right;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0px;
+  :nth-child(n) {
+    padding-right: 4px;
+    padding-left: 4px;
+    &:hover {
+      border-bottom: 0px solid black;
+      background: rgb(196, 196, 196);
+    }
+  }
+}
+.active {
+  color: rgb(0, 0, 0);
+}

@@ -1,0 +1,13 @@
+.root {
+  margin: 30px 50px;
+}
+.load {
+  color: white;
+  background: rgb(19, 19, 19);
+  padding: 5px 40px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(64, 64, 64);
+  }
+  font-family: 'Nunito', Roboto, system-ui, Tahoma, sans-serif;
+}

@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Cart from './components/Cart';
+import Home from './components/Home';
+import Item from './components/Item';
+import Notfound from './components/NotFound';
+import './scss/app.scss';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const itemId = useSelector((state: any) => state.cartReducer.itemId);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<Notfound />} />
+        <Route path={`/item/:${itemId}`} element={<Item />} />
+      </Routes>
+    </>
   );
 }
 

@@ -1,0 +1,31 @@
+.quantity {
+  display: flex;
+  span {
+    padding-right: 5px;
+  }
+  .quantitybutton {
+    display: flex;
+    justify-content: space-between;
+    width: 115px;
+    height: 25px;
+    background: rgb(226, 226, 226);
+    .plus {
+      user-select: none;
+      cursor: pointer;
+      text-align: center;
+      width: 35px;
+      &:hover {
+        background: rgb(193, 193, 193);
+      }
+    }
+    .minus {
+      user-select: none;
+      cursor: pointer;
+      text-align: center;
+      width: 35px;
+      &:hover {
+        background: rgb(162, 162, 162);
+      }
+    }
+  }
+}
