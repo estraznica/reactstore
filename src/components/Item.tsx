@@ -89,7 +89,9 @@ function Item() {
                         </div>
                       </div>
                     </div>
-                    <button onClick={() => onClickAdd()}>Add to cart</button>
+                    <button className={styles.add} onClick={() => onClickAdd()}>
+                      Add to cart
+                    </button>
                   </div>
                 </div>
                 <div className={styles.description}>

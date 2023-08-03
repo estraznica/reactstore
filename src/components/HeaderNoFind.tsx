@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 function HeaderNoFind() {
   const { items, totalPrice } = useSelector((state: any) => state.cartReducer);
-
+  const cartPrice = Number(totalPrice.toFixed(2));
   return (
     <>
       <header className={styles.root}>
@@ -13,7 +13,7 @@ function HeaderNoFind() {
             reactStore
           </Link>
           <Link to="/cart" className={styles.cart}>
-            {totalPrice} $ |
+            {cartPrice} $ |
             <svg
               fill="#fff"
               width="32px"

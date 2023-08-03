@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function Header({ searchValue, setSearchValue }: { searchValue: any; setSearchValue: any }) {
   const { items, totalPrice } = useSelector((state: any) => state.cartReducer);
-
+  const cartPrice = Number(totalPrice.toFixed(2));
   return (
     <>
       <header className={styles.root}>
@@ -17,7 +17,7 @@ function Header({ searchValue, setSearchValue }: { searchValue: any; setSearchVa
             <Find searchValue={searchValue} setSearchValue={setSearchValue} />
           </div>
           <Link to="/cart" className={styles.cart}>
-            {totalPrice} $ |
+            {cartPrice} $ |
             <svg
               fill="#fff"
               width="32px"

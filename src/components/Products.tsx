@@ -45,7 +45,7 @@ function Products({ searchValue }: { searchValue: any }) {
     return false;
   }); //filter - статичный поиск по странице без бэкенда (fakestoreapi не поддерживает поиск?)
 
-  const itemId = useSelector((state: any) => state.cartReducer.itemId);
+  //const itemId = useSelector((state: any) => state.cartReducer.itemId);
   const onClickItem = (id: any) => {
     dispatch(setItemId(id));
   }; //получаем id продукта
@@ -59,7 +59,7 @@ function Products({ searchValue }: { searchValue: any }) {
           ))
         ) : items.length > 0 ? (
           items.map((products: any) => (
-            <Link to={`/item/${itemId}`} key={products.id} className={styles.wrapp}>
+            <Link to="/item" key={products.id} className={styles.wrapp}>
               <div className={styles.product} onClick={() => onClickItem(products.id)}>
                 <img className={styles.img} src={products.image} alt="Item" />
                 <span className={styles.title}>{products.title}</span>
