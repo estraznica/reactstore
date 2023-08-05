@@ -1,4 +1,15 @@
+.root {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
 .product {
+  min-height: 650px;
   padding-top: 30px;
   width: 800px;
   @media (min-width: 768px) and (max-width: 1024px) {

@@ -17,7 +17,7 @@ function Header({ searchValue, setSearchValue }: { searchValue: any; setSearchVa
             <Find searchValue={searchValue} setSearchValue={setSearchValue} />
           </div>
           <Link to="/cart" className={styles.cart}>
-            {cartPrice} $ |
+            <div className={styles.price}>{cartPrice} $ </div>|
             <svg
               fill="#fff"
               width="32px"

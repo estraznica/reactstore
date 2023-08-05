@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './cart.module.scss';
-import Loader from './Loader';
-import HeaderNoFind from './HeaderNoFind';
+import Loader from '../components/Loader';
+import HeaderNoFind from '../components/HeaderNoFind';
 import { useSelector, useDispatch } from 'react-redux';
 import { setItemId, updateCart } from '../redux/slices/cartSlice';
+import Footer from '../components/Footer';
 
 function Cart() {
   interface Product {
@@ -36,10 +37,45 @@ function Cart() {
     dispatch(updateCart(index));
   };
 
+  const totalPrice = Number(useSelector((state: any) => state.cartReducer.totalPrice).toFixed(2));
+  const totalQuantity = items.length;
+
+  const item = items.map((items: any) => (
+    <div className={styles.wrapp} key={items.id}>
+      <div className={styles.wrappimg}>
+        <img src={items.image} alt="Item" />
+      </div>
+      <div className={styles.wrapptext}>
+        <div className={styles.title}>{items.title}</div>
+        <div className={styles.price}> {items.price} $</div>
+        <div className={styles.quantity}>Quantity: {items.quantity}</div>
+        <button className={styles.delete} onClick={() => onClickDelete(items.id)} title="Delete">
+          <svg
+            width="28px"
+            height="28px"
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="#000000">
+            <polyline points="52 16 48 56 16 56 12 16" strokeWidth="3" strokeLinecap="round" />
+            <path
+              strokeWidth="3"
+              d="M20 16v-3.94A4.06 4.06 0 0 1 24.06 8h15.88A4.06 4.06 0 0 1 44 12.06V16"
+              strokeLinecap="round"
+            />
+            <line x1="8" y1="16" x2="56" y2="16" strokeWidth="3" strokeLinecap="round" />
+            <line x1="24" y1="28" x2="40" y2="44" strokeWidth="3" strokeLinecap="round" />
+            <line x1="40" y1="28" x2="24" y2="44" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  ));
+
   return (
-    <>
+    <div className={styles.root}>
       <HeaderNoFind />
-      <div className={styles.root}>
+      <div className={styles.box}>
         {isLoading ? (
           <Loader />
         ) : items.length === 0 ? (
@@ -59,41 +95,28 @@ function Cart() {
             </div>
           </>
         ) : (
-          items.map((items: any) => (
-            <div className={styles.wrapp} key={items.id}>
-              <img src={items.image} alt="Item" />
-              <span className={styles.title}>{items.title}</span>
-              <span className={styles.price}> {items.price} $</span>
-              <span className={styles.quantity}>Quantity: {items.quantity}</span>
-              <button className={styles.delete} onClick={() => onClickDelete(items.id)}>
-                <svg
-                  width="40px"
-                  height="40px"
-                  viewBox="0 0 64 64"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="#000000">
-                  <polyline
-                    points="52 16 48 56 16 56 12 16"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    strokeWidth="3"
-                    d="M20 16v-3.94A4.06 4.06 0 0 1 24.06 8h15.88A4.06 4.06 0 0 1 44 12.06V16"
-                    strokeLinecap="round"
-                  />
-                  <line x1="8" y1="16" x2="56" y2="16" strokeWidth="3" strokeLinecap="round" />
-                  <line x1="24" y1="28" x2="40" y2="44" strokeWidth="3" strokeLinecap="round" />
-                  <line x1="40" y1="28" x2="24" y2="44" strokeWidth="3" strokeLinecap="round" />
-                </svg>
-                Delete
-              </button>
+          <div className={styles.wrapper}>
+            <div>{item}</div>
+            <div className={styles.total}>
+              <div>
+                <b>Order price:</b>
+              </div>
+              <div>
+                {totalQuantity} items worth {totalPrice} $
+              </div>
+              <hr />
+              <div>Log in to get 10% off your first three orders</div>
+              <hr />
+              <div>Total: {totalPrice} $</div>
+              <button className={styles.continue}>Continue to checkout</button>
             </div>
-          ))
+          </div>
         )}
       </div>
-    </>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
+    </div>
   );
 }
 

@@ -9,8 +9,9 @@ import {
   updateProduct,
 } from '../redux/slices/cartSlice';
 import axios from 'axios';
-import Loader from './Loader';
-import HeaderNoFind from './HeaderNoFind';
+import Loader from '../components/Loader';
+import HeaderNoFind from '../components/HeaderNoFind';
+import Footer from '../components/Footer';
 
 interface Product {
   id: number;
@@ -61,9 +62,9 @@ function Item() {
   };
 
   return (
-    <>
+    <div className={styles.root}>
       <HeaderNoFind />
-      <div className={styles.root}>
+      <div>
         {isLoading ? (
           <Loader />
         ) : (
@@ -105,7 +106,10 @@ function Item() {
           </div>
         )}
       </div>
-    </>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
+    </div>
   );
 }
 

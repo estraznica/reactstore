@@ -26,6 +26,9 @@
   margin: 0 auto;
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 600px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
   @media (min-width: 640px) and (max-width: 768px) {
     width: 500px;
@@ -62,6 +65,11 @@
   display: flex;
   align-items: center;
   color: white;
+  .price {
+    word-break: break-all;
+    padding-right: 5px;
+    font-family: 'Nunito', Roboto, system-ui, Tahoma, sans-serif;
+  }
   svg {
     padding-left: 5px;
     padding-right: 5px;
