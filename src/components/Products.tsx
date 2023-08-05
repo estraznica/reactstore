@@ -35,6 +35,7 @@ function Products({ searchValue }: { searchValue: any }) {
         setProducts(res.data);
         setLoading(false);
       });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeIndexCategory, activeIndexSort, itemCount]);
   //fakestoreapi не умеет одновременно выдавать определенное количество товара и фильтровать по acs и desc?
   //оставила limit чтобы показать что могу загружать товары по кнопке

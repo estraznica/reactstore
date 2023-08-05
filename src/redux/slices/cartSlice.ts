@@ -5,12 +5,14 @@ interface CartState {
   totalPrice: number;
   items: any[];
   quantity: number;
+  totalQuantity: number;
 }
 const initialState: CartState = {
   itemId: '1',
   totalPrice: 0,
   items: [],
   quantity: 1,
+  totalQuantity: 1,
 };
 
 export const cartSlice = createSlice({
@@ -50,6 +52,9 @@ export const cartSlice = createSlice({
       state.items.splice(index, 1);
       state.totalPrice = state.items.reduce((total, item) => total + item.price * item.quantity, 0);
     },
+    calculateTotalQuantity(state) {
+      state.totalQuantity = state.items.reduce((total, item) => total + item.quantity, 0);
+    },
   },
 });
 
@@ -62,6 +67,7 @@ export const {
   resetQuantity,
   updateProduct,
   updateCart,
+  calculateTotalQuantity,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

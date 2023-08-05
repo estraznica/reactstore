@@ -113,6 +113,20 @@ img {
     color: white;
     cursor: pointer;
   }
+  .itemsworth,
+  .totalprice {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+  }
+  .login {
+    text-align: justify;
+  }
+  .itemsworthtext,
+  .login {
+    font-size: 18px;
+  }
 }
 .empty {
   padding-top: 100px;

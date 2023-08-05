@@ -7,6 +7,7 @@ import {
   decrement,
   resetQuantity,
   updateProduct,
+  calculateTotalQuantity,
 } from '../redux/slices/cartSlice';
 import axios from 'axios';
 import Loader from '../components/Loader';
@@ -58,6 +59,7 @@ function Item() {
       } else {
         dispatch(addProduct(item));
       }
+      dispatch(calculateTotalQuantity());
     }
   };
 

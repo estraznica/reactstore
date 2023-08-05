@@ -3,7 +3,7 @@ import styles from './cart.module.scss';
 import Loader from '../components/Loader';
 import HeaderNoFind from '../components/HeaderNoFind';
 import { useSelector, useDispatch } from 'react-redux';
-import { setItemId, updateCart } from '../redux/slices/cartSlice';
+import { setItemId, updateCart, calculateTotalQuantity } from '../redux/slices/cartSlice';
 import Footer from '../components/Footer';
 
 function Cart() {
@@ -35,10 +35,11 @@ function Cart() {
     dispatch(setItemId(id));
     const index = items.findIndex((item: Product) => item.id === id);
     dispatch(updateCart(index));
+    dispatch(calculateTotalQuantity());
   };
 
   const totalPrice = Number(useSelector((state: any) => state.cartReducer.totalPrice).toFixed(2));
-  const totalQuantity = items.length;
+  const totalQuantity = useSelector((state: any) => state.cartReducer.totalQuantity);
 
   const item = items.map((items: any) => (
     <div className={styles.wrapp} key={items.id}>
@@ -56,7 +57,7 @@ function Cart() {
             viewBox="0 0 64 64"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            stroke="#000000">
+            stroke="#656565">
             <polyline points="52 16 48 56 16 56 12 16" strokeWidth="3" strokeLinecap="round" />
             <path
               strokeWidth="3"
@@ -101,13 +102,16 @@ function Cart() {
               <div>
                 <b>Order price:</b>
               </div>
-              <div>
-                {totalQuantity} items worth {totalPrice} $
+              <div className={styles.itemsworth}>
+                <div className={styles.itemsworthtext}>{totalQuantity} items worth </div>
+                <div className={styles.itemsworthtext}> {totalPrice} $</div>
               </div>
               <hr />
-              <div>Log in to get 10% off your first three orders</div>
+              <div className={styles.login}>Log in to get 10% off your first three orders</div>
               <hr />
-              <div>Total: {totalPrice} $</div>
+              <div className={styles.totalprice}>
+                <div>Total: </div> <div>{totalPrice} $</div>
+              </div>
               <button className={styles.continue}>Continue to checkout</button>
             </div>
           </div>
