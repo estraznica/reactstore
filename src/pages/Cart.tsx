@@ -7,14 +7,14 @@ import { setItemId, updateCart, calculateTotalQuantity } from '../redux/slices/c
 import Footer from '../components/Footer';
 
 function Cart() {
-  interface Product {
+  type Product = {
     id: number;
     image: string;
     title: string;
     price: number;
     category: string;
     description: string;
-  }
+  };
 
   const items = useSelector((state: any) => state.cartReducer.items);
 
@@ -26,9 +26,11 @@ function Cart() {
       .then((arr) => {
         setProducts(arr);
         setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
       });
   }, []); //для того чтобы отобразить loader
-
   const dispatch = useDispatch();
 
   const onClickDelete = (id: any) => {

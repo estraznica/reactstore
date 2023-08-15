@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<Notfound />} />
-        <Route path="/item" element={<Item />} />
+        <Route path="/item/:id" element={<Item />} />
       </Routes>
     </>
   );

@@ -13,7 +13,7 @@ import axios from 'axios';
 import Loader from '../components/Loader';
 import HeaderNoFind from '../components/HeaderNoFind';
 import Footer from '../components/Footer';
-
+import { useNavigate, useParams } from 'react-router-dom';
 interface Product {
   id: number;
   image: string;
@@ -24,18 +24,31 @@ interface Product {
 }
 
 function Item() {
+  const navigate = useNavigate();
+  const getId = useParams();
   const [isLoading, setLoading] = React.useState(true);
 
   const itemId = useSelector((state: any) => state.cartReducer.itemId);
   const quantity = useSelector((state: any) => state.cartReducer.quantity);
   const items = useSelector((state: any) => state.cartReducer.items);
-
   const [product, setProduct] = React.useState<Product | null>(null);
+
   React.useEffect(() => {
-    axios.get(`https://fakestoreapi.com/products/${itemId}`).then((res) => {
-      setProduct(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`https://fakestoreapi.com/products/${getId.id}`)
+      .then((res) => {
+        if (res.data.length === 0) {
+          setLoading(false);
+          navigate('*');
+        }
+        setProduct(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        alert('An error occurred, return to home page');
+        navigate('/');
+      });
   }, [itemId]);
 
   const dispatch = useDispatch();

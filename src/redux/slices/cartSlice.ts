@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface CartState {
+type CartState = {
   itemId: string;
   totalPrice: number;
   items: any[];
   quantity: number;
   totalQuantity: number;
-}
+};
 const initialState: CartState = {
   itemId: '1',
   totalPrice: 0,
