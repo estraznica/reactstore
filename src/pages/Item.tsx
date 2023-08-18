@@ -14,19 +14,21 @@ import Loader from '../components/Loader';
 import HeaderNoFind from '../components/HeaderNoFind';
 import Footer from '../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
-interface Product {
+import { useWhyDidYouUpdate } from 'ahooks';
+
+type Product = {
   id: number;
   image: string;
   title: string;
   price: number;
   category: string;
   description: string;
-}
+};
 
 function Item() {
   const navigate = useNavigate();
   const getId = useParams();
-  const [isLoading, setLoading] = React.useState(true);
+  const [isLoading, setLoading] = React.useState<boolean>(true);
 
   const itemId = useSelector((state: any) => state.cartReducer.itemId);
   const quantity = useSelector((state: any) => state.cartReducer.quantity);
@@ -75,7 +77,9 @@ function Item() {
       dispatch(calculateTotalQuantity());
     }
   };
-
+  // if (!product) {
+  //   return <Loader />;
+  // }
   return (
     <div className={styles.root}>
       <HeaderNoFind />
@@ -96,13 +100,16 @@ function Item() {
                     <div className={styles.quantity}>
                       <span>Quantity</span>
                       <div className={styles.quantitybutton}>
-                        <div onClick={() => dispatch(decrement())} className={styles.minus}>
+                        <button
+                          disabled={quantity === 1}
+                          onClick={() => dispatch(decrement())}
+                          className={styles.minus}>
                           -
-                        </div>
+                        </button>
                         <div className={styles.number}>{quantity}</div>
-                        <div onClick={() => dispatch(increment())} className={styles.plus}>
+                        <button onClick={() => dispatch(increment())} className={styles.plus}>
                           +
-                        </div>
+                        </button>
                       </div>
                     </div>
                     <button className={styles.add} onClick={() => onClickAdd()}>

@@ -73,6 +73,16 @@
     width: 115px;
     height: 25px;
     background: rgb(226, 226, 226);
+    button {
+      background: rgb(226, 226, 226);
+      border: 0px solid black;
+    }
+    button:disabled {
+      &:hover {
+        background: rgb(226, 226, 226);
+        cursor: default;
+      }
+    }
     .plus {
       user-select: none;
       cursor: pointer;
