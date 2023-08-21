@@ -9,11 +9,29 @@ import { fetchProducts } from '../redux/slices/productSlice';
 import { Link } from 'react-router-dom';
 import { AnyAction } from 'redux';
 
-function Products({ searchValue }: { searchValue: any }) {
+type SearchProps = {
+  searchValue: string;
+};
+type Product = {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  category: string;
+  description: string;
+};
+
+const Products: React.FC<SearchProps> = ({ searchValue }) => {
   const { products, status } = useSelector((state: any) => state.productReducer);
 
-  const category = ['all', 'electronics', 'jewelery', `men's clothing`, `women's clothing`];
-  const sortby = ['recommended', 'asc', 'desc'];
+  const category: string[] = [
+    'all',
+    'electronics',
+    'jewelery',
+    `men's clothing`,
+    `women's clothing`,
+  ];
+  const sortby: string[] = ['recommended', 'asc', 'desc'];
   //const [isLoading, setLoading] = React.useState(true);
 
   const { activeIndexCategory, activeIndexSort, itemCount } = useSelector(
@@ -53,14 +71,14 @@ function Products({ searchValue }: { searchValue: any }) {
 
   const items =
     products &&
-    products.filter((products: any) => {
+    products.filter((products: Product) => {
       if (products.title.toLowerCase().includes(searchValue.toLowerCase())) {
         return true;
       }
       return false;
     }); //filter - статичный поиск по странице без бэкенда (fakestoreapi не поддерживает поиск?)
 
-  const onClickItem = (id: any) => {
+  const onClickItem = (id: number) => {
     dispatch(setItemId(id));
   }; //получаем id продукта
 
@@ -69,10 +87,13 @@ function Products({ searchValue }: { searchValue: any }) {
       <div className={styles.root}>
         {status === 'loading' ? (
           [...new Array(8)].map((_, index) => (
-            <ProductLoader className={styles.loader} key={index} />
+            <div className={styles.loader} key={index}>
+              {' '}
+              <ProductLoader />
+            </div>
           ))
         ) : items?.length > 0 ? (
-          items.map((products: any) => (
+          items.map((products: Product) => (
             <Link to={`/item/${products.id}`} key={products.id} className={styles.wrapp}>
               <div className={styles.product} onClick={() => onClickItem(products.id)}>
                 <img className={styles.img} src={products.image} alt="Item" />
@@ -99,7 +120,7 @@ function Products({ searchValue }: { searchValue: any }) {
       </div>
     </>
   );
-}
+};
 
 export default Products;
 

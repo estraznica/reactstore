@@ -25,7 +25,7 @@ type Product = {
   description: string;
 };
 
-function Item() {
+const Item: React.FC = () => {
   const navigate = useNavigate();
   const getId = useParams();
   const [isLoading, setLoading] = React.useState<boolean>(true);
@@ -77,9 +77,7 @@ function Item() {
       dispatch(calculateTotalQuantity());
     }
   };
-  // if (!product) {
-  //   return <Loader />;
-  // }
+
   return (
     <div className={styles.root}>
       <HeaderNoFind />
@@ -133,6 +131,6 @@ function Item() {
       </div>
     </div>
   );
-}
+};
 
 export default Item;

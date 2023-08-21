@@ -3,7 +3,7 @@ import styles from '../scss/components/quantity.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, resetQuantity } from '../redux/slices/cartSlice';
 
-function Quantity() {
+const Quantity: React.FC = () => {
   const itemId = useSelector((state: any) => state.cartReducer.itemId);
   const quantity = useSelector((state: any) => state.cartReducer.quantity);
   const dispatch = useDispatch();
@@ -27,6 +27,6 @@ function Quantity() {
       </div>
     </>
   );
-}
+};
 
 export default Quantity;

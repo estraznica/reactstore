@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from '../scss/components/headernofind.module.scss';
 import { useSelector } from 'react-redux';
 
-function HeaderNoFind() {
+const HeaderNoFind: React.FC = () => {
   const { items, totalPrice } = useSelector((state: any) => state.cartReducer);
   const cartPrice = Number(totalPrice.toFixed(2));
   return (
@@ -28,6 +28,6 @@ function HeaderNoFind() {
       </header>
     </>
   );
-}
+};
 
 export default HeaderNoFind;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const ProductLoader = (props: any) => (
+const ProductLoader: React.FC = (props: any) => (
   <ContentLoader
     speed={2}
     width={220}

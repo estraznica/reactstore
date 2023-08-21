@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from '../scss/components/find.module.scss';
 
-function Find({ searchValue, setSearchValue }: { searchValue: any; setSearchValue: any }) {
+type SearchPrors = {
+  searchValue: string;
+  setSearchValue: any;
+};
+
+const Find: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
   return (
     <>
       <div className={styles.root}>
@@ -23,6 +28,6 @@ function Find({ searchValue, setSearchValue }: { searchValue: any; setSearchValu
       </div>
     </>
   );
-}
+};
 
 export default Find;

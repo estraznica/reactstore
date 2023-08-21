@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setItemId, updateCart, calculateTotalQuantity } from '../redux/slices/cartSlice';
 import Footer from '../components/Footer';
 
-function Cart() {
+const Cart: React.FC = () => {
   type Product = {
     id: number;
     image: string;
@@ -124,6 +124,6 @@ function Cart() {
       </div>
     </div>
   );
-}
+};
 
 export default Cart;

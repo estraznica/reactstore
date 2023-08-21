@@ -3,13 +3,13 @@ import styles from '../scss/components/sort.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveIndexSort } from '../redux/slices/filterSlice';
 
-function Sort() {
+const Sort: React.FC = () => {
   const [isVisible, setVisible] = React.useState(false);
   const sortby = ['recommended', 'more popular', 'less popular'];
 
   const dispatch = useDispatch();
   const activeIndexSort = useSelector((state: any) => state.filterReducer.activeIndexSort);
-  const onChangeSort = (index: any) => {
+  const onChangeSort = (index: number) => {
     dispatch(setActiveIndexSort(index));
   };
 
@@ -44,6 +44,6 @@ function Sort() {
       </div>
     </>
   );
-}
+};
 
 export default Sort;

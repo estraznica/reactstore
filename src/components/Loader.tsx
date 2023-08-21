@@ -1,6 +1,6 @@
 import styles from '../scss/components/loader.module.scss';
 
-function Loader() {
+const Loader: React.FC = () => {
   return (
     <>
       <div className={styles.root}>
@@ -8,6 +8,6 @@ function Loader() {
       </div>
     </>
   );
-}
+};
 
 export default Loader;

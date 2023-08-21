@@ -1,6 +1,6 @@
 import styles from '../scss/components/sale.module.scss';
 
-function Sale() {
+const Sale: React.FC = () => {
   return (
     <>
       <div className={styles.root}>
@@ -10,6 +10,6 @@ function Sale() {
       </div>
     </>
   );
-}
+};
 
 export default Sale;

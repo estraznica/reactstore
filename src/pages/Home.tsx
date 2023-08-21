@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import Products from '../components/Products';
 import styles from '../scss/pages/home.module.scss';
 
-function Home() {
+const Home: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('');
   return (
     <div className={styles.root}>
@@ -17,6 +17,6 @@ function Home() {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

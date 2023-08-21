@@ -3,7 +3,12 @@ import Find from './Find';
 import styles from '../scss/components/header.module.scss';
 import { useSelector } from 'react-redux';
 
-function Header({ searchValue, setSearchValue }: { searchValue: any; setSearchValue: any }) {
+type SearchPrors = {
+  searchValue: string;
+  setSearchValue: any;
+};
+
+const Header: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
   const { items, totalPrice } = useSelector((state: any) => state.cartReducer);
   const cartPrice = Number(totalPrice.toFixed(2));
   return (
@@ -32,6 +37,6 @@ function Header({ searchValue, setSearchValue }: { searchValue: any; setSearchVa
       </header>
     </>
   );
-}
+};
 
 export default Header;

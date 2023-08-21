@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../scss/pages/notfound.module.scss';
 
-function Notfound() {
+const Notfound: React.FC = () => {
   return (
     <>
       <div className={styles.root}>
@@ -15,6 +15,6 @@ function Notfound() {
       </div>
     </>
   );
-}
+};
 
 export default Notfound;
