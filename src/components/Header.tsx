@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Find from './Find';
-import styles from './header.module.scss';
+import styles from '../scss/components/header.module.scss';
 import { useSelector } from 'react-redux';
 
 function Header({ searchValue, setSearchValue }: { searchValue: any; setSearchValue: any }) {

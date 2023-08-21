@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './cart.module.scss';
+import styles from '../scss/pages/cart.module.scss';
 import Loader from '../components/Loader';
 import HeaderNoFind from '../components/HeaderNoFind';
 import { useSelector, useDispatch } from 'react-redux';

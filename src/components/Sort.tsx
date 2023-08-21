@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './sort.module.scss';
+import styles from '../scss/components/sort.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveIndexSort } from '../redux/slices/filterSlice';
 

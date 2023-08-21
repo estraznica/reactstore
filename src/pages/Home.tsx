@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Categories from '../components/Categories';
 import Footer from '../components/Footer';
 import Products from '../components/Products';
-import styles from './home.module.scss';
+import styles from '../scss/pages/home.module.scss';
 
 function Home() {
   const [searchValue, setSearchValue] = React.useState('');

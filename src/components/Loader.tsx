@@ -1,4 +1,4 @@
-import styles from './loader.module.scss';
+import styles from '../scss/components/loader.module.scss';
 
 function Loader() {
   return (

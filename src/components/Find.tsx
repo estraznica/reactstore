@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './find.module.scss';
+import styles from '../scss/components/find.module.scss';
 
 function Find({ searchValue, setSearchValue }: { searchValue: any; setSearchValue: any }) {
   return (

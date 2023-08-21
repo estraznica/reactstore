@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './loadmore.module.scss';
+import styles from '../scss/components/loadmore.module.scss';
 
 function LoadMore() {
   return (

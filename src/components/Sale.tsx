@@ -1,4 +1,4 @@
-import styles from './sale.module.scss';
+import styles from '../scss/components/sale.module.scss';
 
 function Sale() {
   return (

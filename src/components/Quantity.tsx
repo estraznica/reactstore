@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './quantity.module.scss';
+import styles from '../scss/components/quantity.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement, resetQuantity } from '../redux/slices/cartSlice';
 

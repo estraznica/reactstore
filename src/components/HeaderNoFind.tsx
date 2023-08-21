@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './headernofind.module.scss';
+import styles from '../scss/components/headernofind.module.scss';
 import { useSelector } from 'react-redux';
 
 function HeaderNoFind() {

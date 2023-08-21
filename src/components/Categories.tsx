@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './categories.module.scss';
+import styles from '../scss/components/categories.module.scss';
 import Sort from './Sort';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveIndexCategory } from '../redux/slices/filterSlice';

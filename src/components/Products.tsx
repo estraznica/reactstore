@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './products.module.scss';
+import styles from '../scss/components/products.module.scss';
 import ProductLoader from './ProductLoader';
 import LoadMore from './LoadMore';
 import { useSelector, useDispatch } from 'react-redux';
