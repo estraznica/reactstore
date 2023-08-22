@@ -2,14 +2,15 @@ import { Link } from 'react-router-dom';
 import Find from './Find';
 import styles from '../scss/components/header.module.scss';
 import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 type SearchPrors = {
   searchValue: string;
-  setSearchValue: any;
+  setSearchValue: (value: string) => void;
 };
 
 const Header: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
-  const { items, totalPrice } = useSelector((state: any) => state.cartReducer);
+  const { items, totalPrice } = useSelector((state: RootState) => state.cartReducer);
   const cartPrice = Number(totalPrice.toFixed(2));
   return (
     <>

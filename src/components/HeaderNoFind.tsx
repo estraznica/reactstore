@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from '../scss/components/headernofind.module.scss';
 import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const HeaderNoFind: React.FC = () => {
-  const { items, totalPrice } = useSelector((state: any) => state.cartReducer);
+  const { items, totalPrice } = useSelector((state: RootState) => state.cartReducer);
   const cartPrice = Number(totalPrice.toFixed(2));
   return (
     <>

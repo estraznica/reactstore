@@ -15,7 +15,7 @@ const Sort: React.FC = () => {
 
   const sortRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (!event.composedPath().includes(sortRef.current as EventTarget)) {
         setVisible(false);
       }

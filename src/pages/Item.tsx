@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../scss/pages/item.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import {
   addProduct,
   increment,
@@ -15,14 +16,15 @@ import HeaderNoFind from '../components/HeaderNoFind';
 import Footer from '../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useWhyDidYouUpdate } from 'ahooks';
+import { RootState, useAppDispatch } from '../redux/store';
 
 type Product = {
   id: number;
   image: string;
   title: string;
   price: number;
-  category: string;
-  description: string;
+  category?: string;
+  description?: string;
 };
 
 const Item: React.FC = () => {
@@ -30,9 +32,9 @@ const Item: React.FC = () => {
   const getId = useParams();
   const [isLoading, setLoading] = React.useState<boolean>(true);
 
-  const itemId = useSelector((state: any) => state.cartReducer.itemId);
-  const quantity = useSelector((state: any) => state.cartReducer.quantity);
-  const items = useSelector((state: any) => state.cartReducer.items);
+  const itemId = useSelector((state: RootState) => state.cartReducer.itemId);
+  const quantity = useSelector((state: RootState) => state.cartReducer.quantity);
+  const items = useSelector((state: RootState) => state.cartReducer.items);
   const [product, setProduct] = React.useState<Product | null>(null);
 
   React.useEffect(() => {
@@ -53,7 +55,7 @@ const Item: React.FC = () => {
       });
   }, [itemId]);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(resetQuantity());
   }, [dispatch, itemId]);

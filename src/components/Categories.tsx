@@ -3,6 +3,7 @@ import styles from '../scss/components/categories.module.scss';
 import Sort from './Sort';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveIndexCategory } from '../redux/slices/filterSlice';
+import { RootState } from '../redux/store';
 
 const Categories: React.FC = () => {
   const category: string[] = [
@@ -14,7 +15,9 @@ const Categories: React.FC = () => {
   ];
 
   const dispatch = useDispatch();
-  const activeIndexCategory = useSelector((state: any) => state.filterReducer.activeIndexCategory);
+  const activeIndexCategory = useSelector(
+    (state: RootState) => state.filterReducer.activeIndexCategory,
+  );
   const onChangeCategory = (index: number) => {
     dispatch(setActiveIndexCategory(index));
   };

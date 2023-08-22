@@ -3,7 +3,7 @@ import styles from '../scss/components/find.module.scss';
 
 type SearchPrors = {
   searchValue: string;
-  setSearchValue: any;
+  setSearchValue: (value: string) => void;
 };
 
 const Find: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
@@ -23,7 +23,9 @@ const Find: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
         </svg>
         <input
           value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setSearchValue(event.target.value)
+          }
           placeholder="Search products"></input>
       </div>
     </>

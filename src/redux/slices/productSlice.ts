@@ -1,47 +1,69 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-type ProductState = {
-  products: any[];
-  status: 'loading' | 'success' | 'error';
+type FetchParams = {
+  activeIndexCategory: number;
+  activeIndexSort: number;
+  itemCount: number;
+  sortby: string[];
+  category: string[];
 };
-const initialState: ProductState = {
+type Product = {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  category: string;
+  description: string;
+  quantity: number;
+};
+enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+type ProductSliceState = {
+  products: Product[];
+  status: Status;
+};
+
+const initialState: ProductSliceState = {
   products: [],
-  status: 'loading',
+  status: Status.LOADING,
 };
 export const fetchProducts = createAsyncThunk(
   'product/fetchProductsStatus',
-  async (params: any) => {
+  async (params: FetchParams) => {
     const { activeIndexCategory, activeIndexSort, itemCount, sortby, category } = params;
-    const response = await axios.get(
+    const response = await axios.get<Product[]>(
       `https://fakestoreapi.com/products${
         activeIndexCategory > 0 ? '/category/' + category[activeIndexCategory] : ''
       }${activeIndexSort > 0 ? '?sort=' + sortby[activeIndexSort] : ''}?&limit=${itemCount}`,
     );
 
-    return response.data;
+    return response.data as Product[];
   },
 );
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setProducts(state, action) {
+    setProducts(state, action: PayloadAction<Product[]>) {
       state.products = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
-        state.status = 'loading';
+        state.status = Status.LOADING;
         state.products = [];
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<Product[]>) => {
         state.products = action.payload;
-        state.status = 'success';
+        state.status = Status.SUCCESS;
       })
       .addCase(fetchProducts.rejected, (state) => {
-        state.status = 'error';
+        state.status = Status.ERROR;
         state.products = [];
       });
   },

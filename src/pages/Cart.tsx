@@ -2,9 +2,10 @@ import React from 'react';
 import styles from '../scss/pages/cart.module.scss';
 import Loader from '../components/Loader';
 import HeaderNoFind from '../components/HeaderNoFind';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { setItemId, updateCart, calculateTotalQuantity } from '../redux/slices/cartSlice';
 import Footer from '../components/Footer';
+import { RootState, useAppDispatch } from '../redux/store';
 
 const Cart: React.FC = () => {
   type Product = {
@@ -12,11 +13,12 @@ const Cart: React.FC = () => {
     image: string;
     title: string;
     price: number;
-    category: string;
-    description: string;
+    category?: string;
+    description?: string;
+    quantity: number;
   };
 
-  const items = useSelector((state: any) => state.cartReducer.items);
+  const items = useSelector((state: RootState) => state.cartReducer.items);
 
   const [products, setProducts] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
@@ -31,19 +33,21 @@ const Cart: React.FC = () => {
         setLoading(false);
       });
   }, []); //для того чтобы отобразить loader
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onClickDelete = (id: any) => {
+  const onClickDelete = (id: number) => {
     dispatch(setItemId(id));
     const index = items.findIndex((item: Product) => item.id === id);
     dispatch(updateCart(index));
     dispatch(calculateTotalQuantity());
   };
 
-  const totalPrice = Number(useSelector((state: any) => state.cartReducer.totalPrice).toFixed(2));
-  const totalQuantity = useSelector((state: any) => state.cartReducer.totalQuantity);
+  const totalPrice = Number(
+    useSelector((state: RootState) => state.cartReducer.totalPrice).toFixed(2),
+  );
+  const totalQuantity = useSelector((state: RootState) => state.cartReducer.totalQuantity);
 
-  const item = items.map((items: any) => (
+  const item = items.map((items: Product) => (
     <div className={styles.wrapp} key={items.id}>
       <div className={styles.wrappimg}>
         <img src={items.image} alt="Item" />

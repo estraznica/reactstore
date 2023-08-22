@@ -2,12 +2,12 @@ import React from 'react';
 import styles from '../scss/components/products.module.scss';
 import ProductLoader from './ProductLoader';
 import LoadMore from './LoadMore';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { setItemId } from '../redux/slices/cartSlice';
 import { setItemCount } from '../redux/slices/filterSlice';
 import { fetchProducts } from '../redux/slices/productSlice';
 import { Link } from 'react-router-dom';
-import { AnyAction } from 'redux';
+import { RootState, useAppDispatch } from '../redux/store';
 
 type SearchProps = {
   searchValue: string;
@@ -22,7 +22,7 @@ type Product = {
 };
 
 const Products: React.FC<SearchProps> = ({ searchValue }) => {
-  const { products, status } = useSelector((state: any) => state.productReducer);
+  const { products, status } = useSelector((state: RootState) => state.productReducer);
 
   const category: string[] = [
     'all',
@@ -35,9 +35,9 @@ const Products: React.FC<SearchProps> = ({ searchValue }) => {
   //const [isLoading, setLoading] = React.useState(true);
 
   const { activeIndexCategory, activeIndexSort, itemCount } = useSelector(
-    (state: any) => state.filterReducer,
+    (state: RootState) => state.filterReducer,
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onChangeCount = () => {
     dispatch(setItemCount());
   };
@@ -52,7 +52,7 @@ const Products: React.FC<SearchProps> = ({ searchValue }) => {
         itemCount,
         sortby,
         category,
-      }) as unknown as AnyAction,
+      }),
     );
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
