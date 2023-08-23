@@ -1,11 +1,14 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../scss/components/headernofind.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 const HeaderNoFind: React.FC = () => {
-  const { items, totalPrice } = useSelector((state: RootState) => state.cartReducer);
-  const cartPrice = Number(totalPrice.toFixed(2));
+  const { items } = useSelector((state: RootState) => state.cartReducer);
+  const totalPrice = useSelector((state: RootState) =>
+    parseFloat(state.cartReducer.totalPrice.toFixed(2)),
+  );
   return (
     <>
       <header className={styles.root}>
@@ -14,7 +17,7 @@ const HeaderNoFind: React.FC = () => {
             reactStore
           </Link>
           <Link to="/cart" className={styles.cart}>
-            {cartPrice} $ |
+            {totalPrice} $ |
             <svg
               fill="#fff"
               width="32px"

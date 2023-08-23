@@ -24,7 +24,7 @@ const Find: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
         <input
           value={searchValue}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setSearchValue(event.target.value)
+            setSearchValue ? setSearchValue(event.target.value) : ''
           }
           placeholder="Search products"></input>
       </div>

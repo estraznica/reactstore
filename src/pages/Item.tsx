@@ -15,7 +15,6 @@ import Loader from '../components/Loader';
 import HeaderNoFind from '../components/HeaderNoFind';
 import Footer from '../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useWhyDidYouUpdate } from 'ahooks';
 import { RootState, useAppDispatch } from '../redux/store';
 
 type Product = {
@@ -34,6 +33,7 @@ const Item: React.FC = () => {
 
   const itemId = useSelector((state: RootState) => state.cartReducer.itemId);
   const quantity = useSelector((state: RootState) => state.cartReducer.quantity);
+  const totalPrice = useSelector((state: RootState) => state.cartReducer.totalPrice);
   const items = useSelector((state: RootState) => state.cartReducer.items);
   const [product, setProduct] = React.useState<Product | null>(null);
 
@@ -79,6 +79,18 @@ const Item: React.FC = () => {
       dispatch(calculateTotalQuantity());
     }
   };
+
+  const isMounted = React.useRef(false);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const data = JSON.stringify(items);
+      localStorage.setItem('cart', data);
+      const price = JSON.stringify(totalPrice);
+      localStorage.setItem('totalPrice', price);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className={styles.root}>

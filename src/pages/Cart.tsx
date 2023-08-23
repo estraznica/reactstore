@@ -33,6 +33,7 @@ const Cart: React.FC = () => {
         setLoading(false);
       });
   }, []); //для того чтобы отобразить loader
+
   const dispatch = useAppDispatch();
 
   const onClickDelete = (id: number) => {
@@ -42,10 +43,15 @@ const Cart: React.FC = () => {
     dispatch(calculateTotalQuantity());
   };
 
-  const totalPrice = Number(
-    useSelector((state: RootState) => state.cartReducer.totalPrice).toFixed(2),
+  const totalPrice = useSelector((state: RootState) =>
+    parseFloat(state.cartReducer.totalPrice.toFixed(2)),
   );
+  console.log(totalPrice);
+
   const totalQuantity = useSelector((state: RootState) => state.cartReducer.totalQuantity);
+
+  localStorage.setItem('cart', JSON.stringify(items));
+  localStorage.setItem('totalPrice', JSON.stringify(totalPrice.toFixed(2)));
 
   const item = items.map((items: Product) => (
     <div className={styles.wrapp} key={items.id}>

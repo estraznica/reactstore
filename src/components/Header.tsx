@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Find from './Find';
 import styles from '../scss/components/header.module.scss';
@@ -11,7 +12,9 @@ type SearchPrors = {
 
 const Header: React.FC<SearchPrors> = ({ searchValue, setSearchValue }) => {
   const { items, totalPrice } = useSelector((state: RootState) => state.cartReducer);
-  const cartPrice = Number(totalPrice.toFixed(2));
+  const cartPrice = useSelector((state: RootState) =>
+    parseFloat(state.cartReducer.totalPrice.toFixed(2)),
+  );
   return (
     <>
       <header className={styles.root}>
