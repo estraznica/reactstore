@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { setItemId, updateCart, calculateTotalQuantity } from '../redux/slices/cartSlice';
 import Footer from '../components/Footer';
 import { RootState, useAppDispatch } from '../redux/store';
+import { getTotalPriceFromLS } from '../utils/getTotalPriceFromLS';
 
 const Cart: React.FC = () => {
   type Product = {
@@ -46,9 +47,9 @@ const Cart: React.FC = () => {
   const totalPrice = useSelector((state: RootState) =>
     parseFloat(state.cartReducer.totalPrice.toFixed(2)),
   );
-  console.log('price from redux cart', totalPrice);
 
   const totalQuantity = useSelector((state: RootState) => state.cartReducer.totalQuantity);
+
   const isMounted = React.useRef(false);
   React.useEffect(() => {
     if (isMounted.current) {

@@ -22,7 +22,7 @@ type CartSliceState = {
 
 const initialState: CartSliceState = {
   itemId: 1,
-  totalPrice: getTotalPriceFromLS() | 0,
+  totalPrice: getTotalPriceFromLS(),
   items: getCartFromLS() || [],
   quantity: 1,
   totalQuantity: 1,
