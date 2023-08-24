@@ -32,7 +32,6 @@ const Products: React.FC<SearchProps> = ({ searchValue }) => {
     `women's clothing`,
   ];
   const sortby: string[] = ['recommended', 'asc', 'desc'];
-  //const [isLoading, setLoading] = React.useState(true);
 
   const { activeIndexCategory, activeIndexSort, itemCount } = useSelector(
     (state: RootState) => state.filterReducer,
@@ -43,8 +42,6 @@ const Products: React.FC<SearchProps> = ({ searchValue }) => {
   };
 
   const getProducts = async () => {
-    //setLoading(true);
-    //try {
     dispatch(
       fetchProducts({
         activeIndexCategory,
@@ -54,13 +51,7 @@ const Products: React.FC<SearchProps> = ({ searchValue }) => {
         category,
       }),
     );
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // } catch (error) {
-    //   console.log('ERROR:', error);
-    // } finally {
-    //   setLoading(false);
-    // }
   };
 
   React.useEffect(() => {
@@ -123,23 +114,3 @@ const Products: React.FC<SearchProps> = ({ searchValue }) => {
 };
 
 export default Products;
-
-// const navigate = useNavigate();
-// React.useEffect(() => {
-//   const queryString = qs.stringify({
-//     '/category/': category[activeIndexCategory],
-//     'sort=': sortby[activeIndexSort],
-//     '&limit=': itemCount,
-//   });
-//   navigate('?');
-//   console.log(queryString);
-// }, [activeIndexCategory, activeIndexSort, itemCount]);
-
-// const [products, setProducts] = React.useState([]);
-
-// const res = await axios.get(
-//   `https://fakestoreapi.com/products${
-//     activeIndexCategory > 0 ? '/category/' + category[activeIndexCategory] : ''
-//   }${activeIndexSort > 0 ? '?sort=' + sortby[activeIndexSort] : ''}?&limit=${itemCount}`,
-// );
-// dispatch(setProducts(res.data));

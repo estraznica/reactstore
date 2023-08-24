@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { setItemId, updateCart, calculateTotalQuantity } from '../redux/slices/cartSlice';
 import Footer from '../components/Footer';
 import { RootState, useAppDispatch } from '../redux/store';
-import { getTotalPriceFromLS } from '../utils/getTotalPriceFromLS';
 
 const Cart: React.FC = () => {
   type Product = {
