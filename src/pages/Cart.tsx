@@ -46,12 +46,19 @@ const Cart: React.FC = () => {
   const totalPrice = useSelector((state: RootState) =>
     parseFloat(state.cartReducer.totalPrice.toFixed(2)),
   );
-  console.log(totalPrice);
+  console.log('price from redux cart', totalPrice);
 
   const totalQuantity = useSelector((state: RootState) => state.cartReducer.totalQuantity);
-
-  localStorage.setItem('cart', JSON.stringify(items));
-  localStorage.setItem('totalPrice', JSON.stringify(totalPrice.toFixed(2)));
+  const isMounted = React.useRef(false);
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const data = JSON.stringify(items);
+      localStorage.setItem('cart', data);
+      const price = JSON.stringify(totalPrice);
+      localStorage.setItem('totalPrice', price);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   const item = items.map((items: Product) => (
     <div className={styles.wrapp} key={items.id}>

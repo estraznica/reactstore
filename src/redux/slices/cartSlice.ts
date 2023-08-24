@@ -1,9 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getCartFromLS } from '../../utils/getICartFromLS';
 import { getTotalPriceFromLS } from '../../utils/getTotalPriceFromLS';
-import Decimal from 'decimal.js';
 
-type CartItem = {
+export type CartItem = {
   id: number;
   image: string;
   title: string;
@@ -36,19 +35,6 @@ export const cartSlice = createSlice({
     setItemId(state, action: PayloadAction<number>) {
       state.itemId = action.payload;
     },
-    // addProduct(state, action: PayloadAction<CartItem>) {
-    //   const price = new Decimal(action.payload.price);
-    //   const quantity = new Decimal(action.payload.quantity);
-
-    //   state.items.push(action.payload);
-
-    //   const itemTotal = price.times(quantity);
-    //   const roundedTotal = itemTotal.toFixed(2);
-
-    //   const currentTotal = new Decimal(state.totalPrice);
-    //   const newTotal = currentTotal.plus(roundedTotal).toString();
-    //   state.totalPrice = newTotal; // Преобразуем обратно в строку
-    // },
     addProduct(state, action: PayloadAction<CartItem>) {
       state.items.push(action.payload);
       state.totalPrice += action.payload.price * action.payload.quantity;

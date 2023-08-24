@@ -1,4 +1,7 @@
 export const getTotalPriceFromLS = () => {
   const data = localStorage.getItem('totalPrice');
-  return data ? JSON.parse(data) : [];
+  const dataString: string = data ? JSON.parse(data) : [];
+  const dataNumber = Number(dataString);
+  console.log('get price ', dataNumber);
+  return dataNumber;
 };
